@@ -67,7 +67,6 @@ def inline_query_handler(update: Update, context: CallbackContext):
             digimovie_url = 'https://digimovie.one/?s=' + query_s[1]
             if len(query_s) >= 2:
                 for i in range(2 , len(query_s)):
-                    i
                     digimovie_url += '+'+query_s[i]
             
             digimovie = requests.get(digimovie_url)

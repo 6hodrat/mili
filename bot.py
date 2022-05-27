@@ -21,7 +21,7 @@ messages = {
     
     
     'btn_sazande':'سازنده ربات',
-    'btn_bagasht':'بازگشت'
+    'btn_bagasht':'بازگشت01'
 }
 
 
@@ -67,6 +67,7 @@ def inline_query_handler(update: Update, context: CallbackContext):
             digimovie_url = 'https://digimovie.one/?s=' + query_s[1]
             if len(query_s) >= 2:
                 for i in range(2 , len(query_s)):
+                    i
                     digimovie_url += '+'+query_s[i]
             
             digimovie = requests.get(digimovie_url)
@@ -76,19 +77,19 @@ def inline_query_handler(update: Update, context: CallbackContext):
             film_link = re.findall(r'href=\"(.*?)\" title=\"(.*?)\"', film_ha)
             result = [
                 InlineQueryResultArticle(
-                       id=uuid4(),
-                    title="لیست فیلم ها:",
-                    input_message_content=InputTextMessageContent('روی این کلیک نکن')
+                        id=uuid4(),
+                        title="لیست فیلم ها:",
+                        input_message_content=InputTextMessageContent('روی این کلیک نکن')
                     )
-            ]
+                ]
 
             for i in range(0 ,len(film_title)):
                 i-=1
                 result += [
                     InlineQueryResultArticle(
-                        id=uuid4(),
-                        title=str(film_title[i]),
-                        input_message_content=InputTextMessageContent(str(film_link[i]))
+                            id=uuid4(),
+                            title=str(film_title[i]),
+                            input_message_content=InputTextMessageContent(str(film_link[i]))
                     )
                 ]
         else:
@@ -97,8 +98,8 @@ def inline_query_handler(update: Update, context: CallbackContext):
                 id=uuid4(),
                 title="نام را تایپ کنید...",
                 input_message_content=InputTextMessageContent('...')
-            )
-        ]
+                )
+            ]
 
 
     if query_s[0] == 'mobomovie':
@@ -115,10 +116,10 @@ def inline_query_handler(update: Update, context: CallbackContext):
             film_link = re.findall(r'href=\"(.*?)\"', film_ha)
             result = [
                 InlineQueryResultArticle(
-                       id=uuid4(),
-                    title="لیست فیلم ها:",
-                    input_message_content=InputTextMessageContent('روی این کلیک نکن')
-                    )
+                id=uuid4(),
+                title="لیست فیلم ها:",
+                input_message_content=InputTextMessageContent('روی این کلیک نکن')
+                )
             ]
 
             for i in range(0 ,len(film_title)):
@@ -128,16 +129,16 @@ def inline_query_handler(update: Update, context: CallbackContext):
                         id=uuid4(),
                         title=str(film_title[i]),
                         input_message_content=InputTextMessageContent(str(film_link[i]))
-                    )
-                ]
+                        )
+                    ]
         else:
             result = [
                 InlineQueryResultArticle(
                 id=uuid4(),
                 title="نام را تایپ کنید...",
                 input_message_content=InputTextMessageContent('...')
-            )
-        ]
+                )
+            ]
 
 
     else:
@@ -146,8 +147,8 @@ def inline_query_handler(update: Update, context: CallbackContext):
             id=uuid4(),
             title="...",
             input_message_content=InputTextMessageContent(query)
-        )
-    ]
+            )
+        ]
 
 
         

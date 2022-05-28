@@ -21,7 +21,7 @@ messages = {
     
     
     'btn_sazande':'سازنده ربات',
-    'btn_bagasht':'بازگشت01'
+    'btn_bagasht':'بازگشت'
 }
 
 
@@ -61,7 +61,7 @@ def inline_query_handler(update: Update, context: CallbackContext):
     query_s = query.split(' ')
 
 
-    if query_s[0] == 'digimovie':
+    if query_s[0] == 'digi':
     
         if len(query_s) !=1 :
             digimovie_url = 'https://digimovie.one/?s=' + query_s[1]
@@ -82,7 +82,6 @@ def inline_query_handler(update: Update, context: CallbackContext):
                         input_message_content=InputTextMessageContent('روی این کلیک نکن')
                     )
                 ]
-
             for i in range(0 ,len(film_title)):
                 i-=1
                 result += [
@@ -102,10 +101,10 @@ def inline_query_handler(update: Update, context: CallbackContext):
             ]
 
 
-    if query_s[0] == 'mobomovie':
-    
+    if query_s[0] == 'mobo':
+          
         if len(query_s) !=1 :
-            query_mobomovie = query.replace('mobomovie ', '')
+            query_mobomovie = query.replace('mobo ', '')
             mobomovie_url = 'https://mobomovie1.xyz/search/' + query_mobomovie
             
             
@@ -123,14 +122,13 @@ def inline_query_handler(update: Update, context: CallbackContext):
             ]
 
             for i in range(0 ,len(film_title)):
-                i-=1
                 result += [
                     InlineQueryResultArticle(
-                        id=uuid4(),
-                        title=str(film_title[i]),
-                        input_message_content=InputTextMessageContent(str(film_link[i]))
-                        )
-                    ]
+                            id=uuid4(),
+                            title=str(film_title[i]),
+                            input_message_content=InputTextMessageContent(str(film_link[i]))
+                    )
+                ]
         else:
             result = [
                 InlineQueryResultArticle(
@@ -141,7 +139,7 @@ def inline_query_handler(update: Update, context: CallbackContext):
             ]
 
 
-    else:
+    if query_s[0] != 'mobo' and query_s[0] != 'digi':
         result = [
             InlineQueryResultArticle(
             id=uuid4(),
@@ -153,7 +151,7 @@ def inline_query_handler(update: Update, context: CallbackContext):
 
         
     
-    
+
     update.inline_query.answer(result)
 
 def main():
